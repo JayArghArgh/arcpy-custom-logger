@@ -1,20 +1,53 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+A custom logger class for use with GIS projects. Because the ESRI logging inteferes with Pythons logging.
+* Clogger allows you to use very basic categories (info, data, process, warning, error) for your log messages.
+* Clogger uses pipes | so you can import the log into excel adn filter if required.
+
+![img.png](img.png)
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Copy clogger.py into any project you want to work with, create a new object and parse what you need to it
+
+# Logging Methods
+
+- Info Clogger.info(log_item)
+- Data Clogger.data(log_item)
+- Process Clogger.process(log_item)
+- Warning Clogger.warning(log_item)
+- Error Clogger.error(log_item)
+- Shut Down Logger Clogger.shut_down_clogger()
+
+## Import the logger
+
+`import clogger as ...`
+
+## Create an instance of the logger to use in your code
+
+`log_me = custom_log.ClipperLog(r"C:full path to output directory ie C:\My Documents")`
+
+## Log some info
+```
+log_me.info(f"clipper executed by {environ.get('USERNAME')}")
+log_me.info(region_name)
+log_me.info(regional_info)
+log_me.info(parameters[3].valueAsText)
+  ```
+
+## Log an error
+`log_me.error("Whatever your error message is")`
+
+## Don't forget to close the logger!
+
+```
+log_me.info("=========TASK COMPLETE=========")
+log_me.shut_down_logger()
+```
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Clone away :)
+
+# Issue?
+
+Holler JayArghArgh.
