@@ -11,7 +11,7 @@ Copy clogger.py into any project you want to work with, create a new object and 
 
 # Logging Methods
 
-- Info Clogger.info(log_item)
+- Info Clogger .info(log_item)
 - Data Clogger.data(log_item)
 - Process Clogger.process(log_item)
 - Warning Clogger.warning(log_item)
