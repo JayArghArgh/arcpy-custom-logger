@@ -7,7 +7,9 @@ A custom logger class for use with GIS projects. Because the ESRI logging intefe
 
 # Getting Started
 
-Copy clogger.py into any project you want to work with, create a new object and parse what you need to it
+```
+git submodule add https://github.com/JayArghArgh/arcpy-custom-logger.git path/to/subrepo
+```
 
 # Logging Methods
 
