@@ -8,7 +8,7 @@ A custom logger class for use with GIS projects. Because the ESRI logging intefe
 # Getting Started
 
 ```
-git submodule add https://github.com/JayArghArgh/arcpy-custom-logger.git path/to/subrepo
+git submodule add https://github.com/JayArghArgh/arcpy_custom_logger.git path/to/subrepo
 ```
 
 # Logging Methods
