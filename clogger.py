@@ -12,37 +12,42 @@ LOG_PROCESS = "PROCESS"
 # TODO this needs some try except and if statements to ensure it doesn't cause errors.
 class Clogger:
     """Custom logger because ESRI is also logging and this interferes with standard logging."""
-    def __init__(self, logfile_path):
+    def __init__(self, logfile_path, logfile_name=None):
         self.f_name_append = time.strftime('%Y%m%d_%H%M%S')
-        self.logfile_path = logfile_path,
-        self.logfile = f"{CLOGGER}_{self.f_name_append}.log"
-        self.file = open(path.join(self.logfile_path[0], self.logfile), "w")
+
+        if not logfile_name:
+            timestamp = time.strftime('%Y%m%d_%H%M%S')
+            logfile_name = f"{CLOGGER}_{timestamp}.log"
+
+        self.logfile_path = logfile_path
+        self.logfile = logfile_name
+        self.file = open(path.join(self.logfile_path, self.logfile), "w")
         self.file.write(f"TIME|PRIORITY|MESSAGE\n")
         self.file.close()
 
-    def write_line(self, items):
-        self.file = open(path.join(self.logfile_path[0], self.logfile), "a")
-        time_obj = time.gmtime()
+    def write_line(self, level, message):
+        self.file = open(path.join(self.logfile_path, self.logfile), "a")
+        timestamp = time.asctime(time.gmtime())
         try:
-            self.file.write(f"{time.asctime(time_obj)}|{items[0]}|{items[1]}\n")
+            self.file.write(f"{timestamp}|{level}|{message}\n")
         except Exception as e:
-            self.file.write(f"{time_obj}|{LOG_ERROR}|{e}\n")
-        self.file.close()
+            self.file.write(f"{timestamp}|{LOG_ERROR}|{str(e)}\n")
+            self.file.close()
 
-    def info(self, log_item):
-        self.write_line([LOG_INFO, log_item])
+    def info(self, msg):
+        self.write_line(LOG_INFO, msg)
 
-    def data(self, log_item):
-        self.write_line([LOG_DATA, log_item])
+    def data(self, msg):
+        self.write_line(LOG_DATA, msg)
 
-    def process(self, log_item):
-        self.write_line([LOG_PROCESS, log_item])
+    def process(self, msg):
+        self.write_line(LOG_PROCESS, msg)
 
-    def warning(self, log_item):
-        self.write_line([LOG_WARNING, log_item])
+    def warning(self, msg):
+        self.write_line(LOG_WARNING, msg)
 
-    def error(self, log_item):
-        self.write_line([LOG_ERROR, log_item])
+    def error(self, msg):
+        self.write_line(LOG_ERROR, msg)
 
     def shut_down_logger(self):
         self.file.close()
